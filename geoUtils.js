@@ -61,3 +61,22 @@ export const formatDMSToDecimal = (lat, lng) => {
 };
 
 /*---------------------------------------------------------------------------------------*/
+
+export const haversineDistance = (lat1, lng1, lat2, lng2) => {
+	const rad = (x) => (x * Math.PI) / 180;
+
+	const R = 6378137; // Earth’s mean radius in meter
+	const dLat = rad(lat2 - lat1);
+	const dLong = rad(lng2 - lng1);
+	const a =
+		Math.sin(dLat / 2) * Math.sin(dLat / 2) +
+		Math.cos(rad(lat1)) *
+			Math.cos(rad(lat2)) *
+			Math.sin(dLong / 2) *
+			Math.sin(dLong / 2);
+	const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+	const d = R * c;
+	return d; // returns the distance in meters
+};
+
+/*---------------------------------------------------------------------------------------*/

@@ -127,9 +127,9 @@ export const invertColor = (hex) => {
 		throw new Error("Invalid HEX color.");
 	}
 	// invert color components
-	const r = (255 - parseInt(HEX.slice(0, 2), 16)).toString(16);
-	const g = (255 - parseInt(HEX.slice(2, 4), 16)).toString(16);
-	const b = (255 - parseInt(HEX.slice(4, 6), 16)).toString(16);
+	const r = (255 - Number.parseInt(HEX.slice(0, 2), 16)).toString(16);
+	const g = (255 - Number.parseInt(HEX.slice(2, 4), 16)).toString(16);
+	const b = (255 - Number.parseInt(HEX.slice(4, 6), 16)).toString(16);
 	// pad each with zeros and return
 	return `#${padZero(r)}${padZero(g)}${padZero(b)}`;
 };
