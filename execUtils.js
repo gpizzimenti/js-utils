@@ -3,7 +3,7 @@
 export const nextFrame = (fn) =>
 	//https://dev.to/nikitadmitr/the-other-side-of-using-requestanimationframe-4jk6
 	requestAnimationFrame(() => {
-		requestAnimationFrame(func);
+		requestAnimationFrame(fn);
 	});
 
 /*---------------------------------------------------------------------------------------*/
