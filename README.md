@@ -10,6 +10,7 @@
 	 - HexToRGB
 	 - HexToHSL 
 	 - HSLToRGB
+	 - HSLToHex
 	 - invertColor
 	 
   - **[domUtils.js](https://github.com/gpizzimenti/js-utils/blob/main/domUtils.js):**
