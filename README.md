@@ -16,7 +16,7 @@
   - **[domUtils.js](https://github.com/gpizzimenti/js-utils/blob/main/domUtils.js):**
 	 - escapeHtml
 	 - unescapeHtml
-   	 - hasScrollbars 
+   	 - isScrollable 
 	 
   - **[execUtils.js](execUtils.js):**
 	 - nextFrame
