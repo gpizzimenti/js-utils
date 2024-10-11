@@ -15,3 +15,12 @@ export const unescapeHtml = (html) => {
 };
 
 /*-----------------------------------------------------------------------------------------------*/
+
+export const hasScrollbars = (element) => {
+  const _hasV = element.scrollHeight > element.clientHeight;
+  const _hasH = element.scrollWidth > element.clientWidth;
+
+  return { vertical: _hasV, horizontal: _hasH, both: _hasV && _hasH };
+}
+
+/*-----------------------------------------------------------------------------------------------*/
