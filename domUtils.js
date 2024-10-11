@@ -16,11 +16,17 @@ export const unescapeHtml = (html) => {
 
 /*-----------------------------------------------------------------------------------------------*/
 
-export const hasScrollbars = (element) => {
-  const _hasV = element.scrollHeight > element.clientHeight;
-  const _hasH = element.scrollWidth > element.clientWidth;
+export const isScrollable = (element) => {  
+	const overflowY = window.getComputedStyle(element)['overflow-y'];
+  	const overflowX = window.getComputedStyle(element)['overflow-x'];
+  	const _hasV =
+	    (overflowY === 'scroll' || overflowY === 'auto') &&
+	    element.scrollHeight > element.offsetHeight;
+	const _hasH =
+	    (overflowX === 'scroll' || overflowX === 'auto') &&
+	    element.scrollWidth > element.offsetWidth;
 
-  return { vertical: _hasV, horizontal: _hasH, both: _hasV && _hasH };
+	return { vertical: _hasV, horizontal: _hasH, both: _hasV && _hasH };
 }
 
 /*-----------------------------------------------------------------------------------------------*/
