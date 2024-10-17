@@ -16,6 +16,10 @@ export const unescapeHtml = (html) => {
 
 /*-----------------------------------------------------------------------------------------------*/
 
+export const index = element => Array.from(element.parentElement.children).indexOf(element);
+
+/*-----------------------------------------------------------------------------------------------*/
+
 export const isScrollable = (element) => {  
 	const overflowY = window.getComputedStyle(element)['overflow-y'];
   	const overflowX = window.getComputedStyle(element)['overflow-x'];
