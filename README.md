@@ -16,6 +16,7 @@
   - **[domUtils.js](https://github.com/gpizzimenti/js-utils/blob/main/domUtils.js):**
 	 - escapeHtml
 	 - unescapeHtml
+   	 - index
    	 - isScrollable 
 	 
   - **[execUtils.js](execUtils.js):**
