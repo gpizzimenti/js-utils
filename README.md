@@ -25,6 +25,10 @@
 	 - debounce 
 	 - throttle
 	 
+  - **[formUtils.js](https://github.com/gpizzimenti/js-utils/blob/main/formUtils.js):**
+	 - serializeForm
+	 - serializeFormToJSON
+	 
   - **[geoUtils.js](https://github.com/gpizzimenti/js-utils/blob/main/geoUtils.js):**
 	 - DecimaltoDMS
 	 - DMSToDecimal
