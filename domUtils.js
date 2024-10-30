@@ -15,3 +15,22 @@ export const unescapeHtml = (html) => {
 };
 
 /*-----------------------------------------------------------------------------------------------*/
+
+export const index = element => Array.from(element.parentElement.children).indexOf(element);
+
+/*-----------------------------------------------------------------------------------------------*/
+
+export const isScrollable = (element) => {  
+	const overflowY = window.getComputedStyle(element)['overflow-y'];
+  	const overflowX = window.getComputedStyle(element)['overflow-x'];
+  	const _hasV =
+	    (overflowY === 'scroll' || overflowY === 'auto') &&
+	    element.scrollHeight > element.offsetHeight;
+	const _hasH =
+	    (overflowX === 'scroll' || overflowX === 'auto') &&
+	    element.scrollWidth > element.offsetWidth;
+
+	return { vertical: _hasV, horizontal: _hasH, both: _hasV && _hasH };
+}
+
+/*-----------------------------------------------------------------------------------------------*/
