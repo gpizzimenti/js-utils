@@ -36,4 +36,4 @@
 
   - urlify
 
-  <sup>1</sup> depends on _domUtils_
+  <sup>1</sup> <small>depends on _domUtils_</small>
