@@ -4,5 +4,5 @@ export const traverse = (obj, path) => {
 	return path
 		.split(".")
 		.filter(Boolean)
-		.reduce((acc, curr) => (acc[curr] ? acc[curr] : undefined), obj);
+		.reduce((acc, curr) => (acc?.[curr] ? acc[curr] : undefined), obj);
 };
