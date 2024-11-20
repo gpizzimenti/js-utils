@@ -136,6 +136,21 @@ export const invertColor = (hex) => {
 
 /*-----------------------------------------------------------------------------------------------*/
 
+export const getColorForPositiveInteger = (num) => {
+    if (num < 0 || !Number.isInteger(num)) {
+        throw new Error("Input must be a positive integer");
+    }
+    
+    const hue = (num * 137.508) % 360; // Golden ratio multiplier for good distribution
+
+    const saturation = 70; // Keep colors vibrant but not neon
+    const lightness = 50;  // Avoid too dark or too bright
+    
+    return HSLToHex(hue, saturation, lightness);
+};
+
+/*-----------------------------------------------------------------------------------------------*/
+
 function padZero(str, len) {
 	const LEN = len || 2;
 	const zeros = new Array(LEN).join("0");

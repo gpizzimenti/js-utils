@@ -13,6 +13,7 @@
   - HSLToRGB
   - HSLToHex
   - invertColor
+  - getColorForPositiveInteger
 - **[domUtils.js](https://github.com/gpizzimenti/js-utils/blob/main/domUtils.js):**
   - escapeHtml
   - unescapeHtml
