@@ -6,6 +6,7 @@
   - isSmallFormat
   - browserData
 - **[collectionUtils.js](https://github.com/gpizzimenti/js-utils/blob/main/collectionUtils.js):**
+  - intersection
   - traverse
 - **[colorUtils.js](https://github.com/gpizzimenti/js-utils/blob/main/colorUtils.js):**
   - HexToRGB
