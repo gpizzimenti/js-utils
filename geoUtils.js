@@ -80,3 +80,17 @@ export const haversineDistance = (lat1, lng1, lat2, lng2) => {
 };
 
 /*---------------------------------------------------------------------------------------*/
+
+export const reverseCoordinates = (coords) => {
+	if (!Array.isArray(coords) || coords.length < 2) {
+		return coords;
+	}
+
+	if (typeof coords[0] === "number") {
+		return [coords[1], coords[0]];
+	}
+
+	return coords.map((coord) => reverseCoordinates(coord));
+};
+
+/*---------------------------------------------------------------------------------------*/
