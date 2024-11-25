@@ -103,9 +103,9 @@ export const HSLToRGB = (h, s, l) => {
 export const HSLToHex = (h, s, l) => {
 	const rgb = HSLToRGB(h, s, l);
 
-	if (rgb[0].length === 1) rgb[0] = `0${r}`;
-	if (rgb[1].length === 1) rgb[1] = `0${g}`;
-	if (rgb[2].length === 1) rgb[2] = `0${b}`;
+	if (rgb[0].length === 1) rgb[0] = `0${rgb[0]}`;
+	if (rgb[1].length === 1) rgb[1] = `0${rgb[1]}`;
+	if (rgb[2].length === 1) rgb[2] = `0${rgb[2]}`;
 
 	return `#${rgb[0]}${rgb[1]}${rgb[2]}`;
 };
@@ -136,17 +136,24 @@ export const invertColor = (hex) => {
 
 /*-----------------------------------------------------------------------------------------------*/
 
-export const getColorForPositiveInteger = (num) => {
-    if (num < 0 || !Number.isInteger(num)) {
-        throw new Error("Input must be a positive integer");
-    }
-    
-    const hue = (num * 137.508) % 360; // Golden ratio multiplier for good distribution
+export const getColorForPositiveInteger = (
+	num,
+	saturation = 70,
+	lightness = 50,
+) => {
+	if (num < 0 || !Number.isInteger(num)) {
+		throw new Error("Input must be a positive integer");
+	}
+	if (saturation < 0 || saturation > 100) {
+		throw new Error("Saturation must be a value between 0 and 100");
+	}
+	if (lightness < 0 || lightness > 100) {
+		throw new Error("Lightness must be a value between 0 and 100");
+	}
 
-    const saturation = 70; // Keep colors vibrant but not neon
-    const lightness = 50;  // Avoid too dark or too bright
-    
-    return HSLToHex(hue, saturation, lightness);
+	const hue = (num * 137.508) % 360; // Golden ratio multiplier for good distribution
+
+	return HSLToHex(hue, saturation, lightness);
 };
 
 /*-----------------------------------------------------------------------------------------------*/
