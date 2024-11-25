@@ -103,9 +103,9 @@ export const HSLToRGB = (h, s, l) => {
 export const HSLToHex = (h, s, l) => {
 	const rgb = HSLToRGB(h, s, l);
 
-	if (rgb[0].length === 1) rgb[0] = `0${rgb[0]}`;
-	if (rgb[1].length === 1) rgb[1] = `0${rgb[1]}`;
-	if (rgb[2].length === 1) rgb[2] = `0${rgb[2]}`;
+	rgb[0] = padZero(rgb[0]);
+	rgb[1] = padZero(rgb[1]);
+	rgb[2] = padZero(rgb[2]);
 
 	return `#${rgb[0]}${rgb[1]}${rgb[2]}`;
 };
