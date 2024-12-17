@@ -82,7 +82,7 @@ export const haversineDistance = (lat1, lng1, lat2, lng2) => {
 /*---------------------------------------------------------------------------------------*/
 
 export const reverseCoordinates = (coords) => {
-	if (!Array.isArray(coords) || coords.length < 2) {
+	if (!Array.isArray(coords)) {
 		return coords;
 	}
 
