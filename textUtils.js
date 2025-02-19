@@ -10,6 +10,8 @@ const RX_URL =
 	"(\\?[;&a-z\\d%_.~+=-]*)?" + // query string
 	"(\\#[-a-z\\d_]*)?";
 
+const RX_EMAIL = /\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Z|a-z]{2,}\b/g;
+
 const attributesToStr = (attributes) =>
 	Object.entries(attributes).reduce(
 		(acc, curr) => `${acc} ${curr[0]}"="${escapeHtml(curr[1])}"`,
@@ -30,3 +32,8 @@ export const urlify = (txt, attributes) => {
 
 	return txt.replaceAll(new RegExp(RX_URL, "gim"), tmpl);
 };
+
+export const emailify = (text) =>
+	text.replace(RX_EMAIL, (email) => {
+		return `<a href="mailto:${email}">${email}</a>`;
+	});
