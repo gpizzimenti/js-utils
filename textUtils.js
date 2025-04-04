@@ -49,3 +49,7 @@ export const normalizeDiacritics = (text) =>
 		.normalize("NFD")
 		.replace(/[\u0300-\u036f]/g, "")
 		.normalize("NFC");
+
+/*---------------------------------------------------------------------------------------*/
+
+export const nvl = (str, dflt) => str || dflt || "";

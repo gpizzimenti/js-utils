@@ -43,6 +43,7 @@
   - emailify
   - urlify
   - normalizeDiacritics
+  - nvl
 
   \
   <sup>1</sup> depends on _domUtils_
