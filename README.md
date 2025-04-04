@@ -19,6 +19,7 @@
   - escapeHtml
   - unescapeHtml
   - index
+  - getCSSVariable
   - isScrollable
 - **[execUtils.js](https://github.com/gpizzimenti/js-utils/blob/main/execUtils.js):**
   - nextFrame
@@ -41,6 +42,7 @@
 
   - emailify
   - urlify
+  - normalizeDiacritics
 
   \
   <sup>1</sup> depends on _domUtils_
