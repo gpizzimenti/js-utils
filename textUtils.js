@@ -18,6 +18,8 @@ const attributesToStr = (attributes) =>
 		"",
 	);
 
+/*---------------------------------------------------------------------------------------*/
+
 export const urlify = (txt, attributes) => {
 	let attributesString = `target="_blank" rel="nofollow noopener noreferrer"`;
 
@@ -33,7 +35,17 @@ export const urlify = (txt, attributes) => {
 	return txt.replaceAll(new RegExp(RX_URL, "gim"), tmpl);
 };
 
+/*---------------------------------------------------------------------------------------*/
+
 export const emailify = (text) =>
 	text.replace(RX_EMAIL, (email) => {
 		return `<a href="mailto:${email}">${email}</a>`;
 	});
+
+/*---------------------------------------------------------------------------------------*/
+
+export const normalizeDiacritics = (text) =>
+	text
+		.normalize("NFD")
+		.replace(/[\u0300-\u036f]/g, "")
+		.normalize("NFC");
