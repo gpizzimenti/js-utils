@@ -15,3 +15,17 @@ export const intersection = (list1, list2) => {
 
 	return [...set1].filter((item) => set2.has(item));
 };
+
+/*---------------------------------------------------------------------------------------*/
+
+export const sortStruct = (struct, comparator) => {
+	const sortedArray = Array.from(struct).sort(
+		comparator && comparator instanceof Function ? comparator : undefined,
+	);
+	let sortedStruct;
+
+	if (struct instanceof Map) sortedStruct = new Map(sortedArray);
+	else if (struct instanceof Set) sortedStruct = new Set(sortedArray);
+
+	return sortedStruct;
+};

@@ -7,6 +7,7 @@
   - browserData
 - **[collectionUtils.js](https://github.com/gpizzimenti/js-utils/blob/main/collectionUtils.js):**
   - intersection
+  - sortStruct
   - traverse
 - **[colorUtils.js](https://github.com/gpizzimenti/js-utils/blob/main/colorUtils.js):**
   - HexToRGB
