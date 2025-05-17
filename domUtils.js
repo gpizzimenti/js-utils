@@ -24,6 +24,23 @@ export const index = (element) =>
 export const getCSSVariable = (name, context) =>
 	getComputedStyle(context || document.documentElement).getPropertyValue(name);
 
+/*----------------------------------------------------------------*/
+
+export function getLang(dflt) {
+	const locale = new Intl.Locale(navigator.language);
+	let lang = dflt || "en";
+
+	if (locale?.language) lang = locale.language;
+	else if (document.querySelector("html").getAttribute("lang"))
+		lang = document
+			.querySelector("html")
+			.getAttribute("lang")
+			.toLowerCase()
+			.split("-")[0];
+
+	return lang;
+}
+
 /*-----------------------------------------------------------------------------------------------*/
 
 export const isScrollable = (element) => {

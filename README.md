@@ -21,6 +21,7 @@
   - unescapeHtml
   - index
   - getCSSVariable
+  - getLang
   - isScrollable
 - **[execUtils.js](https://github.com/gpizzimenti/js-utils/blob/main/execUtils.js):**
   - nextFrame
