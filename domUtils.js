@@ -22,7 +22,7 @@ export const index = (element) =>
 /*-----------------------------------------------------------------------------------------------*/
 
 export const getCSSVariable = (name, context) =>
-	getComputedStyle(context || document.documentElement).getPropertyValue(name);
+	(typeof window !== "undefined") && window.getComputedStyle(context || document.documentElement)?.getPropertyValue(name);
 
 /*----------------------------------------------------------------*/
 
