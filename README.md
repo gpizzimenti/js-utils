@@ -33,6 +33,8 @@
   - serializeFormToJSON
   - deserializeQueryStringToFormData
   - escapeHtmlAttributeValue
+  - isFormElementBlank
+  - disableBlankInputs
 - **[geoUtils.js](https://github.com/gpizzimenti/js-utils/blob/main/geoUtils.js):**
   - DecimaltoDMS
   - DMSToDecimal
