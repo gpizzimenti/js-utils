@@ -44,16 +44,28 @@ export function getLang(dflt) {
 /*-----------------------------------------------------------------------------------------------*/
 
 export const isScrollable = (element) => {
+        const scrollLeft = element.scrollLeft;
+        const scrollTop = element.scrollTop;
+        const scrollWidth = element.scrollWidth;
+        const scrollHeight = element.scrollHeight;
+        const clientWidth = element.clientWidth;
+        const clientHeight = element.clientHeight;    
+        
 	const overflowY = window.getComputedStyle(element)["overflow-y"];
 	const overflowX = window.getComputedStyle(element)["overflow-x"];
+        
 	const _hasV =
 		(overflowY === "scroll" || overflowY === "auto") &&
-		element.scrollHeight > element.offsetHeight;
+		scrollHeight > clientHeight;
 	const _hasH =
 		(overflowX === "scroll" || overflowX === "auto") &&
-		element.scrollWidth > element.offsetWidth;
-
-	return { vertical: _hasV, horizontal: _hasH, both: _hasV && _hasH };
+		scrollWidth > clientWidth;
+        const _canScrollLeft =  scrollLeft > 0;
+        const _canScrollRight =  scrollLeft < (scrollWidth - clientWidth);
+        const _canScrollTop = scrollTop > 0;
+        const _canScrollDown = scrollTop < (scrollHeight - clientHeight);
+        
+	return { vertical: _hasV, horizontal: _hasH, both: _hasV && _hasH, up: _canScrollTop, down: _canScrollDown, left: _canScrollLeft, right: _canScrollRight   };
 };
 
 /*-----------------------------------------------------------------------------------------------*/
