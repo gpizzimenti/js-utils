@@ -1,14 +1,18 @@
 /*-----------------------------------------------------------------------------------------------*/
 
 export const serializeForm = (form, skipBlanks = true) => {
-	const formData = new FormData(form);
-        
+	let formData = new FormData(form);
+
         if (skipBlanks) { 
+            const filteredFormData = new FormData();
             for(var [key,value] of Array.from(formData.entries())){
-                if ((Array.isArray(value) && value.length === 0) || !value?.trim())
-                    formData.delete(key);
+                if (value !== '' && value !== null && value !== undefined) {
+                  filteredFormData.append(key, value);
+                }
             }
+            formData =  filteredFormData;
         }
+        
 	const qsString = new URLSearchParams(formData).toString();
 
 	return qsString;
