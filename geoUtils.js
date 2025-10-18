@@ -81,6 +81,48 @@ export const haversineDistance = (lat1, lng1, lat2, lng2) => {
 
 /*---------------------------------------------------------------------------------------*/
 
+export const polylineSegment = (polylineCoords, startCoord, endCoord, tolerance = 0.00001) => {
+    
+  let startIndex = -1;
+  let endIndex = -1;
+  
+  for (let i = 0; i < polylineCoords.length; i++) {
+    const coord = polylineCoords[i];
+    
+    const lat = coord.lat || coord[0];
+    const lng = coord.lng || coord[1];
+    
+    const startLat = startCoord.lat || startCoord[0];
+    const startLng = startCoord.lng || startCoord[1];
+
+    const endLat = endCoord.lat || endCoord[0];
+    const endLng = endCoord.lng || endCoord[1];
+        
+    if (Math.abs(lat - startLat) < tolerance && 
+        Math.abs(lng - startLng) < tolerance) {
+      startIndex = i;
+    }
+    
+    if (Math.abs(lat - endLat) < tolerance && 
+        Math.abs(lng - endLng) < tolerance) {
+      endIndex = i;
+    }
+  }
+  
+  if (startIndex === -1 || endIndex === -1) {
+    console.warn('Start or end coordinate not found in polyline');
+    return [];
+  }
+  
+  if (startIndex > endIndex) {
+    [startIndex, endIndex] = [endIndex, startIndex];
+  }
+  
+  return polylineCoords.slice(startIndex, endIndex + 1);
+};
+
+/*---------------------------------------------------------------------------------------*/
+
 export const reverseCoordinates = (coords) => {
 	if (!Array.isArray(coords)) {
 		return coords;
