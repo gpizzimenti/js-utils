@@ -44,6 +44,25 @@ export const emailify = (text) =>
 
 /*---------------------------------------------------------------------------------------*/
 
+export const extractAnchors = (html,hrefsOnly) => {
+  const tempDiv = document.createElement('div');
+  tempDiv.innerHTML = html;
+
+  const anchors = tempDiv.getElementsByTagName('a');
+  
+  const anchorsSet = new Set();
+  
+  for (const anchor of anchors) {
+    if (anchor.href) {
+      anchorsSet.add(hrefsOnly ? anchor.href : anchor);
+    }
+  }
+  
+  return anchorsSet;
+};  
+
+/*---------------------------------------------------------------------------------------*/
+
 export const normalizeDiacritics = (text) =>
 	text
 		.normalize("NFD")

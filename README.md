@@ -45,6 +45,7 @@
   - reverseCoordinates
 - **[textUtils.js](https://github.com/gpizzimenti/js-utils/blob/main/textUtils.js):** <sup>1</sup>
 
+  - extractAnchors
   - emailify
   - urlify
   - normalizeDiacritics
