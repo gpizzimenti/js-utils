@@ -34,6 +34,7 @@
   - deserializeQueryStringToFormData
   - escapeHtmlAttributeValue
   - isFormElementBlank
+  - getFormElementDisplayValue
   - disableBlankInputs
 - **[geoUtils.js](https://github.com/gpizzimenti/js-utils/blob/main/geoUtils.js):**
   - DecimaltoDMS
@@ -44,7 +45,6 @@
   - polylineSegment
   - reverseCoordinates
 - **[textUtils.js](https://github.com/gpizzimenti/js-utils/blob/main/textUtils.js):** <sup>1</sup>
-
   - extractAnchors
   - emailify
   - urlify

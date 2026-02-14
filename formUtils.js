@@ -68,6 +68,12 @@ export const disableBlankInputs = (form, options = {}) => {
     // Check if value is blank and disable
     if (isFormElementBlank(input)) {
       input.disabled = true;
+      if (options.className)
+        if (options.className === true || options.className === 'true') {
+          input.classList.add('hasbeen-blanked');
+        } else {
+          input.classList.add(options.className);
+        }
     }
   });
 };
@@ -90,6 +96,76 @@ export const isFormElementBlank = (element) => {
   
   return false;
 };
+
+/*-----------------------------------------------------------------------------------------------*/
+
+export const getFormElementDisplayValue = (element) => {
+  if (!element) return '';
+
+  const tagName = element.tagName.toLowerCase();
+  const type = element.type?.toLowerCase();
+
+  // Input elements
+  if (tagName === 'input') {
+    switch (type) {
+      case 'checkbox':
+      case 'radio':
+        if (!element.checked) return '';
+        // Try to find associated label
+        if (element.id) {
+          const label = document.querySelector(`label[for="${element.id}"]`);
+          if (label) return label.innerText.trim();
+        }
+        // Fallback to value or empty
+        return element.value || '';
+
+      case 'text':
+      case 'search':
+      case 'email':
+      case 'password':
+      case 'url':
+      case 'tel':
+      case 'number':
+      case 'date':
+      case 'time':
+      case 'datetime-local':
+      case 'month':
+      case 'week':
+      case 'color':
+        return element.value || '';
+
+      case 'file':
+        return element.files.length > 0 
+          ? Array.from(element.files).map(f => f.name).join(', ')
+          : '';
+
+      default:
+        return element.value || '';
+    }
+  }
+
+  // Select elements
+  if (tagName === 'select') {
+    // Multiple select
+    if (element.multiple) {
+      const selectedOptions = Array.from(element.options)
+        .filter(option => option.selected && option.value)
+        .map(option => option.innerText.trim());
+      return selectedOptions.join(', ');
+    }
+    // Single select
+    const selectedOption = element.options[element.selectedIndex];
+    return selectedOption && selectedOption.value ? selectedOption.innerText.trim() : '';
+  }
+
+  // Textarea
+  if (tagName === 'textarea') {
+    return element.value || '';
+  }
+
+  // All other elements - return innerText
+  return element.innerText?.trim() || '';
+}
 
 /*-----------------------------------------------------------------------------------------------*/
 
