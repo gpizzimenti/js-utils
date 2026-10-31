@@ -30,20 +30,15 @@ export const getCSSVariable = (name, context) =>
 /*----------------------------------------------------------------*/
 
 export function getLang(dflt) {
-	const locale = new Intl.Locale(navigator.language);
-	let lang = dflt || "en";
+	let lang = document.querySelector("html").getAttribute("lang");
 
-	if (locale?.language) {
+	if (!lang && navigator.language) {
+		const locale = new Intl.Locale(navigator.language);
 		lang = locale.language;
-	} else if (document.querySelector("html").getAttribute("lang")) {
-		lang = document
-			.querySelector("html")
-			.getAttribute("lang")
-			.toLowerCase()
-			.split("-")[0];
 	}
 
-	return lang;
+	if (lang) return lang.toLowerCase().split("-")[0];
+	else return dflt;
 }
 
 /*----------------------------------------------------------------*/
