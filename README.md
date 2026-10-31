@@ -9,6 +9,9 @@
   - intersection
   - sortStruct
   - traverse
+  - chunk
+  - chunkIntoN 
+  - chunkWithMinSize
 - **[colorUtils.js](https://github.com/gpizzimenti/js-utils/blob/main/colorUtils.js):**
   - HexToRGB
   - HexToHSL
@@ -16,12 +19,14 @@
   - HSLToHex
   - invertColor
   - getColorForPositiveInteger
-- **[domUtils.js](https://github.com/gpizzimenti/js-utils/blob/main/domUtils.js):**
+- **[domUtils.js](https://github.com/gpizzimenti/js-utils/blob/main/domUtils.js):** 
   - escapeHtml
   - unescapeHtml
   - index
   - getCSSVariable
   - getLang
+  - getBase
+  - getSiblings
   - isScrollable
 - **[execUtils.js](https://github.com/gpizzimenti/js-utils/blob/main/execUtils.js):**
   - nextFrame

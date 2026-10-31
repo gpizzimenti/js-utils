@@ -21,7 +21,7 @@ export const isSmallFormat = (trigger = 800) => {
 /*---------------------------------------------------------------------------------------*/
 
 export const browserData = () =>
-	new Promise((resolve, reject) => {
+	new Promise((resolve, _reject) => {
 		if (navigator.userAgentData) {
 			const hints = [
 				"architecture",

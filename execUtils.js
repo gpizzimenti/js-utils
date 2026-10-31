@@ -16,7 +16,7 @@ export const softExec = (fn, wait = 5000) => {
 	} else if ("requestAnimationFrame" in window) {
 		//https://web.dev/articles/optimize-inp
 		requestAnimationFrame(() => {
-		    setTimeout(fn, 0);
+			setTimeout(fn, 0);
 		});
 	} else {
 		setTimeout(fn, 0);

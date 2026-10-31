@@ -29,3 +29,53 @@ export const sortStruct = (struct, comparator) => {
 
 	return sortedStruct;
 };
+
+/*---------------------------------------------------------------------------------------*/
+
+/* chunk* functions from https://www.30secondsofcode.org/js/s/split-array-into-chunks/ */
+
+export const chunk = (arr, size) =>
+	Array.from({ length: Math.ceil(arr.length / size) }, (_v, i) =>
+		arr.slice(i * size, i * size + size),
+	);
+
+/*---------------------------------------------------------------------------------------*/
+
+export const chunkIntoN = (arr, n) => {
+	const size = Math.ceil(arr.length / n);
+	return Array.from({ length: n }, (_v, i) =>
+		arr.slice(i * size, i * size + size),
+	);
+};
+
+/*---------------------------------------------------------------------------------------*/
+
+export const chunkWithMinSize = (arr, chunkSize, minChunkSize = 0) => {
+	const remainder = arr.length % chunkSize;
+	const isLastChunkTooSmall = remainder < minChunkSize;
+	const totalChunks = isLastChunkTooSmall
+		? Math.floor(arr.length / chunkSize)
+		: Math.ceil(arr.length / chunkSize);
+	return Array.from({ length: totalChunks }, (_, i) => {
+		const chunk = arr.slice(i * chunkSize, i * chunkSize + chunkSize);
+		if (i === totalChunks - 1 && isLastChunkTooSmall)
+			chunk.push(...arr.slice(-remainder));
+		return chunk;
+	});
+};
+
+/*---------------------------------------------------------------------------------------*/
+
+export const chunkify = function* (itr, size) {
+	let chunk = [];
+	for (const v of itr) {
+		chunk.push(v);
+		if (chunk.length === size) {
+			yield chunk;
+			chunk = [];
+		}
+	}
+	if (chunk.length) yield chunk;
+};
+
+/*---------------------------------------------------------------------------------------*/
