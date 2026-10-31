@@ -112,4 +112,106 @@ export const isScrollable = (element) => {
 	};
 };
 
+/*---------------------------------------------------------------------------------------*/
+/* vibe-coded with  Claude */
+/**
+ * Strips HTML tags using DOMParser, with optional whitelist of tags to preserve.
+ *
+ * @param {string} html - The HTML string to process.
+ * @param {string[]} [allowedTags=[]] - Tags to preserve (e.g. ['a', 'strong']).
+ * @param {string[]} [allowedAttributes=[]] - Attributes to preserve (e.g. ['class', 'data']).
+ * @returns {string} - The cleaned string.
+ */
+export const stripHtmlTags = (
+	html,
+	allowedTags,
+	allowedAttributes = [],
+	externalAnchors = false,
+) => {
+	if (!html) {
+		return "";
+	}
+
+	const whitelists = {
+		minimal: [
+			"strong",
+			"em",
+			"b",
+			"i",
+			"u",
+			"q",
+			"br",
+			"a",
+			"ol",
+			"ul",
+			"li",
+			"dl",
+			"dt",
+			"dd",
+			"dfn",
+			"cite",
+			"blockquote",
+			"address",
+			"acronym",
+			"abbr",
+			"bdo",
+			"bdi",
+			"p",
+			"s",
+			"del",
+			"ins",
+			"mark",
+		],
+	};
+
+	const parser = new DOMParser();
+	const doc = parser.parseFromString(html, "text/html");
+	const allowed = Array.isArray(allowedTags)
+		? allowedTags.map((t) => t.toLowerCase())
+		: (typeof allowedTags === "string" && whitelists[allowedTags]) || [];
+
+	function processNode(node) {
+		// Text nodes — keep as-is
+		if (node.nodeType === Node.TEXT_NODE) {
+			return node.textContent;
+		}
+
+		// Element nodes
+		if (node.nodeType === Node.ELEMENT_NODE) {
+			const tag = node.tagName.toLowerCase();
+			const children = Array.from(node.childNodes).map(processNode).join("");
+
+			if (allowed.includes(tag)) {
+				// Rebuild the tag with its attributes
+				let attrs = Array.from(node.attributes)
+					.map((a) =>
+						tag === "a" &&
+						externalAnchors &&
+						(["target", "rel", "href"].includes(a.name) ||
+							a.name.startsWith("on"))
+							? ""
+							: allowedAttributes.includes(a.name)
+								? `${a.name}="${escapeHtml(a.value)}"`
+								: "",
+					)
+					.join(" ");
+
+				if (tag === "a" && externalAnchors) {
+					attrs += `${attrs ? " " : ""}href="${escapeHtml(node.href)}" target="_blank" rel="nofollow noopener noreferrer"`;
+				}
+
+				const openTag = attrs ? `<${tag} ${attrs}>` : `<${tag}>`;
+				return `${openTag}${children}</${tag}>`;
+			}
+
+			// Disallowed tag — drop the tag but keep its inner content
+			return children;
+		}
+
+		return "";
+	}
+
+	return Array.from(doc.body.childNodes).map(processNode).join("");
+};
+
 /*-----------------------------------------------------------------------------------------------*/

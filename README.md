@@ -28,6 +28,7 @@
   - getBase
   - getSiblings
   - isScrollable
+  - stripHtmlTags
 - **[execUtils.js](https://github.com/gpizzimenti/js-utils/blob/main/execUtils.js):**
   - nextFrame
   - softExec
