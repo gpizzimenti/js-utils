@@ -115,6 +115,35 @@ export const isScrollable = (element) => {
 /*---------------------------------------------------------------------------------------*/
 /* vibe-coded with  Claude */
 /**
+ * @param {Element} el
+ * @param {{ partial?: boolean, root?: Element|null }} [opts]
+ *   partial: true = basta che sia visibile in parte; false = deve essere interamente dentro
+ *   root: contenitore scrollabile di riferimento (default: viewport)
+ */
+export const isInView = (el, { partial = true, root = null } = {}) => {
+	const r = el.getBoundingClientRect();
+
+	let top = 0,
+		left = 0;
+	let bottom = window.innerHeight || document.documentElement.clientHeight;
+	let right = window.innerWidth || document.documentElement.clientWidth;
+
+	if (root) {
+		const rr = root.getBoundingClientRect();
+		top = Math.max(top, rr.top);
+		left = Math.max(left, rr.left);
+		bottom = Math.min(bottom, rr.bottom);
+		right = Math.min(right, rr.right);
+	}
+
+	return partial
+		? r.bottom > top && r.top < bottom && r.right > left && r.left < right
+		: r.top >= top && r.left >= left && r.bottom <= bottom && r.right <= right;
+};
+
+/*---------------------------------------------------------------------------------------*/
+/* vibe-coded with  Claude */
+/**
  * Strips HTML tags using DOMParser, with optional whitelist of tags to preserve.
  *
  * @param {string} html - The HTML string to process.
