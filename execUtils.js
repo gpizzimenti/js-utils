@@ -27,19 +27,19 @@ export const softExec = (fn, wait = 5000) => {
 
 export const debounce = (fn, timeout = 300) => {
 	let timer;
-	return (...args) => {
+	const debounced = function (...args) {
 		clearTimeout(timer);
-		timer = setTimeout(() => {
-			fn.apply(this, args);
-		}, timeout);
+		timer = setTimeout(() => fn.apply(this, args), timeout);
 	};
+	debounced.cancel = () => clearTimeout(timer);
+	return debounced;
 };
 
 /*---------------------------------------------------------------------------------------*/
 
 export const throttle = (fn, timeout = 300) => {
 	let waiting = false;
-	return (...args) => {
+	return function (...args) {
 		if (!waiting) {
 			fn.apply(this, args);
 			waiting = true;
